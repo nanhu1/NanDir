@@ -3,6 +3,8 @@ package Nandir
 import (
 	"crypto/tls"
 	"github.com/gookit/color"
+	"github.com/go-resty/resty/v2"
+	"Nandir/read_new"
 	"strings"
 	"sync"
 	"time"
@@ -55,7 +57,7 @@ func Nanscan(url string, dir string, errtime int64, timesleep int64) (Webinfo, e
 }
 
 func NanDirScan(url string, filename string, num int, errtime int64, timesleep int64, openerrstr int, errstr string) {
-	dicall := scan_new.Readfile(filename)
+	dicall := read_new.Readfile(filename)
 	r, err := Nanscan(url, "", errtime, 0)
 	if err != nil {
 		color.Warn.Println("[Err] 目标访问错误，可能被ban了！")
@@ -73,7 +75,7 @@ func NanDirScan(url string, filename string, num int, errtime int64, timesleep i
 	color.Red.Println("[Info] 开始扫描中.")
 	color.Red.Println("---------------------------------------")
 
-	g := scan_new.NewNan(num) //设置线程数量
+	g := read_new.NewNan(num) //设置线程数量
 	wg := &sync.WaitGroup{}
 	beg := time.Now()
 	for i := 0; i < len(dicall); i++ {
