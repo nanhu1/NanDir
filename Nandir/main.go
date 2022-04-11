@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"Nandir/flag_new"
+	"Nandir/scan_new"
+    	
 )
 
 func main() {
